@@ -1,0 +1,11 @@
+#!/bin/bash
+
+export NODE_VERSION="20.2.0"
+
+export DEV_TASKS="edit | test-watch"
+export TEST_RUNNER="custom"
+
+export COV_STATEMENTS=0
+export COV_BRANCHES=0
+export COV_FUNCTIONS=0
+export COV_LINES=0
