@@ -1,6 +1,6 @@
 # Module Testrunner
 
-<p align="right"><code>100% cov</code>&nbsp;<code>22 sloc</code>&nbsp;<code>2 files</code>&nbsp;<code>0 deps</code>&nbsp;<code>9 dev deps</code></p>
+<p align="right"><code>24 sloc</code>&nbsp;<code>2 files</code>&nbsp;<code>0 deps</code>&nbsp;<code>9 dev deps</code></p>
 
 Runs test files that export a top level function to enable initialisation.
 
@@ -11,6 +11,9 @@ Runs test files that export a top level function to enable initialisation.
 ## Table of Contents
 
 - [Install](#install)
+- [Usage](#usage)
+- [Options](#options)
+- [Example](#example)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -19,4 +22,39 @@ Runs test files that export a top level function to enable initialisation.
 ###### <p align="right"><a href="https://www.npmjs.com/package/module-testrunner">https://www.npmjs.com/package/module-testrunner</a></p>
 ```sh
 npm install module-testrunner
+```
+
+## Usage
+
+### CLI
+
+```js
+nmt test_files
+```
+
+### API
+
+```js
+const run = require('module-testrunner');
+const options = { ... };
+run(options);
+```
+
+## Options
+
+`files`: Array of test file paths.
+`args`: Array of custom test arguments. Default: Result of loading `main` from `package.json` or `./index.js`.
+`test`: Function that runs a test. Default: Result of loading `node:test`.
+`assert`: Assertion library. Default: Result of loading `node:assert`.
+`context`: Additional context object to make accessible to each test.
+
+## Example
+
+```js
+module.exports = ({ test, assert, context }) => args => {
+    test('loads the app', () => {
+        const app = args.load();
+        assert(context.helpers.appLoaded(app));
+    });
+}
 ```

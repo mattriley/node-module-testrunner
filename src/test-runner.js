@@ -20,7 +20,7 @@ module.exports = (options = {}) => {
     files.forEach(async f => {
         const { default: ini } = await import(f);
         if (typeof ini !== 'function') return;
-        const run = ini({ test, assert }, context, ...args);
+        const run = ini({ test, assert, context, args }, context, ...args);
         if (typeof run !== 'function') return;
         run(...args);
     });
