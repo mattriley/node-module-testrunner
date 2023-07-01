@@ -1,6 +1,6 @@
-const process = require('process');
-const path = require('path');
-const fs = require('fs');
+const process = require('node:process');
+const path = require('node:path');
+const fs = require('node:fs');
 
 const { main = 'index.js' } = require(path.resolve('package.json'));
 const mainPath = path.resolve(main);
@@ -13,7 +13,7 @@ const defaultOptions = {
     context: {}
 };
 
-module.exports = () => (options = {}) => {
+module.exports = (options = {}) => {
 
     const { files, args, test, assert, context } = { ...defaultOptions, ...options };
 

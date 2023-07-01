@@ -1,3 +1,2 @@
-const testRunner = require('./test-runner');
-const run = testRunner();
+const run = require('./test-runner');
 module.exports = { run };
