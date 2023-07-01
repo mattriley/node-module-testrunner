@@ -35,7 +35,7 @@ nmt test_files
 ### API
 
 ```js
-const run = require('module-testrunner');
+const { run } = require('module-testrunner');
 const options = { ... };
 run(options);
 ```
