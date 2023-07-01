@@ -10,18 +10,17 @@ const defaultOptions = {
     args: fs.existsSync(mainPath) ? [require(mainPath)] : [],
     test: require('node:test'),
     assert: require('node:assert/strict'),
-    helpers: undefined,
-    window: globalThis.window
+    context: {}
 };
 
 module.exports = () => (options = {}) => {
 
-    const { files, args, test, assert, helpers, window } = { ...defaultOptions, ...options };
+    const { files, args, test, assert, context } = { ...defaultOptions, ...options };
 
     files.forEach(async f => {
         const { default: ini } = await import(f);
         if (typeof ini !== 'function') return;
-        const run = ini({ test, assert, helpers, window }, ...args);
+        const run = ini({ test, assert }, context, ...args);
         if (typeof run !== 'function') return;
         run(...args);
     });
