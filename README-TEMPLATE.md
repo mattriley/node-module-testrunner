@@ -52,5 +52,5 @@ module.exports = ({ test, assert, context }) => args => {
         assert(context.helpers.appInitialised(app));
     });
 
-}
+};
 ```
