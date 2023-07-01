@@ -50,11 +50,27 @@ run(options);
 
 ## Example
 
+### Basic
+
+```js
+module.exports = ({ test, assert }) => {
+
+    test('it passes', () => {
+        assert(true);
+    });
+
+};
+```
+
+### Advanced
+
 ```js
 module.exports = ({ test, assert, context }) => args => {
-    test('loads the app', () => {
-        const app = args.load();
-        assert(context.helpers.appLoaded(app));
+
+    test('initialises the app', () => {
+        const app = args.initialise();
+        assert(context.helpers.appInitialised(app));
     });
+
 }
 ```
