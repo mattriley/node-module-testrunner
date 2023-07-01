@@ -22,11 +22,11 @@ run(options);
 
 ## Options
 
-`files`: Array of test file paths.
-`args`: Array of custom test arguments. Default: Result of loading `main` from `package.json` or `./index.js`.
-`test`: Function that runs a test. Default: Result of loading `node:test`.
-`assert`: Assertion library. Default: Result of loading `node:assert`.
-`context`: Additional context object to make accessible to each test.
+- `files`: Array of test file paths.
+- `args`: Array of custom test arguments. Default: Result of loading `main` from `package.json` or `./index.js`.
+- `test`: Function that runs a test. Default: Result of loading `node:test`.
+- `assert`: Assertion library. Default: Result of loading `node:assert`.
+- `context`: Additional context object to make accessible to each test.
 
 ## Example
 
