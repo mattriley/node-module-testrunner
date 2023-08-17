@@ -26,14 +26,14 @@ const loadMain = () => {
 };
 
 const loadCompose = () => {
-    const search = ['js', 'cjs', 'mjs'].map(ext => path.resolve(`./compose.${ext}`));
+    const search = ['js', 'cjs', 'mjs'].map(ext => path.resolve(`./src/compose.${ext}`));
     const match = search.find(f => fs.existsSync(f));
     return match ? loadModule(match) : null;
 };
 
 module.exports = (options = {}) => {
 
-    const { files, args, test, assert, context } = { ...defaultOptions, ...options };
+    const { files, test, assert, context, args } = { ...defaultOptions, ...options };
 
     files.forEach(async f => {
         const ini = await loadModule(f);
