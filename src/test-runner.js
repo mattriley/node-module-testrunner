@@ -1,26 +1,37 @@
-const process = require('node:process');
-const path = require('node:path');
-const fs = require('node:fs');
-
-const { main = 'index.js' } = require(path.resolve('package.json'));
-const mainPath = path.resolve(main);
+const process = require('process');
+const path = require('path');
+const { main } = require(path.resolve('package.json'));
 
 const defaultOptions = {
     files: process.argv.slice(2).map(f => path.resolve(f)),
-    args: fs.existsSync(mainPath) ? [require(mainPath)] : [],
     test: require('node:test'),
     assert: require('node:assert/strict'),
     context: {}
 };
 
-module.exports = (options = {}) => {
+const loadModule = modulePath => {
+    try {
+        return require(modulePath);
+    } catch (err) {
+        if (err.code === 'ERR_REQUIRE_ESM') return import(modulePath);
+        throw err;
+    }
+};
+
+const loadMain = () => {
+    if (!main) return null;
+    return loadModule(path.resolve(main));
+};
+
+module.exports = () => (options = {}) => {
 
     const { files, args, test, assert, context } = { ...defaultOptions, ...options };
 
     files.forEach(async f => {
-        const { default: ini } = await import(f);
+        const ini = await loadModule(f);
         if (typeof ini !== 'function') return;
-        const run = ini({ test, assert, context, args }, context, ...args);
+        const main = await loadMain();
+        const run = ini({ test, assert, main }, context, ...args);
         if (typeof run !== 'function') return;
         run(...args);
     });
