@@ -1,5 +1,6 @@
-const process = require('process');
-const path = require('path');
+const process = require('node:process');
+const path = require('node:path');
+const fs = require('node:fs');
 const { main } = require(path.resolve('package.json'));
 
 const defaultOptions = {
@@ -23,6 +24,12 @@ const loadMain = () => {
     return loadModule(path.resolve(main));
 };
 
+const loadCompose = () => {
+    const search = ['js', 'cjs', 'mjs'].map(ext => path.resolve(`./compose.${ext}`));
+    const match = search.find(f => fs.existsSync(f));
+    return match ? loadModule(match) : null;
+};
+
 module.exports = () => (options = {}) => {
 
     const { files, args, test, assert, context } = { ...defaultOptions, ...options };
@@ -30,8 +37,9 @@ module.exports = () => (options = {}) => {
     files.forEach(async f => {
         const ini = await loadModule(f);
         if (typeof ini !== 'function') return;
+        const compose = await loadCompose();
         const main = await loadMain();
-        const run = ini({ test, assert, main }, context, ...args);
+        const run = ini({ test, assert, main, compose }, context, ...args);
         if (typeof run !== 'function') return;
         run(...args);
     });
