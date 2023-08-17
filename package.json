@@ -15,7 +15,8 @@
         "email": "m@ttriley.dev"
     },
     "bin": {
-        "mtr": "./bin/mtr.js"
+        "test": "./bin/test.js",
+        "test-babel": "./bin/test-babel.js"
     },
     "files": [
         "./bin/**/*",

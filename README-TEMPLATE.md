@@ -9,7 +9,7 @@
 ### CLI
 
 ```js
-nmt test_files
+npx test test_files
 ```
 
 ### API
