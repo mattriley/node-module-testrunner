@@ -30,7 +30,7 @@ const loadCompose = () => {
     return match ? loadModule(match) : null;
 };
 
-module.exports = () => (options = {}) => {
+module.exports = (options = {}) => {
 
     const { files, args, test, assert, context } = { ...defaultOptions, ...options };
 
