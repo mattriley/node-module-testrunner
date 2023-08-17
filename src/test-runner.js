@@ -7,7 +7,8 @@ const defaultOptions = {
     files: process.argv.slice(2).map(f => path.resolve(f)),
     test: require('node:test'),
     assert: require('node:assert/strict'),
-    context: {}
+    context: {},
+    args: []
 };
 
 const loadModule = modulePath => {
