@@ -16,7 +16,7 @@
     },
     "bin": {
         "test": "./bin/test.js",
-        "test-babel": "./bin/test-babel.js"
+        "module-testrunner": "./bin/test.js"
     },
     "files": [
         "./bin/**/*",
