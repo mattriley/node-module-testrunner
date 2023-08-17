@@ -1,6 +1,6 @@
 {
     "name": "module-testrunner",
-    "version": "0.11.0",
+    "version": "0.12.0",
     "description": "Runs test files that export a top level function to enable initialisation.",
     "license": "ISC",
     "homepage": "https://github.com/mattriley/node-module-testrunner",
