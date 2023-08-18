@@ -37,7 +37,6 @@ module.exports = (options = {}) => {
 
     files.forEach(async f => {
         const ini = await loadModuleDefault(f);
-        console.warn(ini);
         if (typeof ini !== 'function') return;
         const compose = await loadCompose();
         const main = await loadMain();
