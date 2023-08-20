@@ -34,7 +34,7 @@ module.exports = (options = {}) => {
         const main = await loadMain();
         const run = await init({ test, assert, main, compose }, context, ...args);
         if (typeof run !== 'function') return;
-        await run(...args);
+        await run(main);
     });
 
 };
