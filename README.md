@@ -1,6 +1,6 @@
 # Module Testrunner
 
-<p align="right"><code>41 sloc</code>&nbsp;<code>2 files</code>&nbsp;<code>0 deps</code>&nbsp;<code>9 dev deps</code></p>
+<p align="right"><code>44 sloc</code>&nbsp;<code>3 files</code>&nbsp;<code>0 deps</code>&nbsp;<code>9 dev deps</code></p>
 
 Runs test files that export a top level function to enable initialisation.
 
@@ -29,7 +29,7 @@ npm install module-testrunner
 ### CLI
 
 ```js
-nmt test_files
+npx test test_files
 ```
 
 ### API
